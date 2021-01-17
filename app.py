@@ -1,11 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask
 
+# Page imports
+import main_page
 
 app = Flask(__name__)
 
 @app.route('/')
 def idex():
-    return render_template('index.html')
+    return main_page.load_html()
 
 if __name__ == '__main__':
     app.run(debug=True)
