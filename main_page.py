@@ -19,20 +19,42 @@ def load_html():
     
 
     page_html = """
-    <!DOCTYPE html>
+    <!doctype html>
     <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <meta name="description" content="A layout example that shows off a responsive product landing page.">
+        <title>Landing Page &ndash; Layout Examples &ndash; Pure</title>
+        <link rel="stylesheet" type="text/css" href="\styling\pure_min.css">
     </head>
     <body>
-        <h1> HEHE TIME FOR PLAYLIST RECOMMENDATION </h1>
 
-        <a href="{}"> Please click on this link to make a playlist</a>
-        
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a class="pure-menu-heading" href="">Your Site</a>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Tour</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sign Up</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="splash-container">
+        <div class="splash">
+            <h1 class="splash-head">All Capstone No Cap</h1>
+            <p class="splash-subhead">
+                Finding music that parents can listen to with their children
+            </p>
+            <p>
+                <a href="http://purecss.io" class="pure-button pure-button-primary">Get Started</a>
+            </p>
+        </div>
+    </div>
     </body>
-    </html>
+</html>
      """.format(auth_url)
 
     return page_html
