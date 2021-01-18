@@ -6,13 +6,14 @@ def load_html():
     client_secret = '14116a664bd84048a0c7c3004edc9726'
 
     # Temporary placeholder until we actually get a website going
+    # redirect_uri = 'http://127.0.0.1:5000/callback/'
     redirect_uri = 'https://initialflaskapp.herokuapp.com/callback/'
 
     # The permissions that our application will ask for
     scope = " ".join(['playlist-modify-public',"user-top-read","user-read-recently-played","playlist-read-private"])
 
     # Oauth object    
-    sp_oauth = spotipy.oauth2.SpotifyOAuth(client_id, client_secret, redirect_uri, scope=scope, cache_path=None)
+    sp_oauth = spotipy.oauth2.SpotifyOAuth(client_id, client_secret, redirect_uri, scope=scope)
 
     # Force auth every time
     auth_url = sp_oauth.get_authorize_url()

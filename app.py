@@ -12,6 +12,8 @@ def idex():
 @app.route('/callback/')
 def callback():
     code = request.args.get('code')
+    print("WE GOT DA CODE")
+    print(code)
     return callback_page.load_html()
 
 if __name__ == '__main__':
