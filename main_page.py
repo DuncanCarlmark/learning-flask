@@ -12,7 +12,7 @@ def load_html():
     scope = " ".join(['playlist-modify-public',"user-top-read","user-read-recently-played","playlist-read-private"])
 
     # Oauth object    
-    sp_oauth = spotipy.oauth2.SpotifyOAuth(client_id, client_secret, redirect_uri, scope=scope, cache_path=None, show_dialog=True)
+    sp_oauth = spotipy.oauth2.SpotifyOAuth(client_id, client_secret, redirect_uri, scope=scope, cache_path=None)
 
     # Force auth every time
     auth_url = sp_oauth.get_authorize_url()
