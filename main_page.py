@@ -36,11 +36,16 @@ def load_html():
     gdown.download(url1, output1, quiet=False)
     gdown.download(url2, output2, quiet=False)
 
+    cols1 = ['user_id', 'gender', 'age', 'country', 'date']
+    cols2 = ['user_id', 'artist_id', 'artist_name', 'plays']
 
-    user_key = pd.read_csv(output1, sep = '\t')
 
-    user_artist_pairs = pd.read_csv(output2, sep = '\t')
+
+    user_key = pd.read_csv(output1, sep = '\t', cols1)
+
+    user_artist_pairs = pd.read_csv(output2, sep = '\t', cols2)
     
+
 
     page_html = """
     <!doctype html>
