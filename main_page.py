@@ -24,25 +24,22 @@ def load_html():
     # Force auth every time
     auth_url = sp_oauth.get_authorize_url()
 
+    user_profile_url = '1N4ZFdyvULQ0gQDxGsvMFURdiaV94y1F_'
+    user_artist_url = '1OXvOiNbe9EzhX5rjzQZxOoYXLxwDycah'  
+
+    url1 = 'https://docs.google.com/uc?export=download&id={}'.format(user_profile_url)
+    url2 = 'https://drive.google.com/uc?id={}'.format(user_artist_url)
+
+    output1 = 'user_profile.tsv'
+    output2 = 'user_artist.tsv'
+
+    gdown.download(url1, output1, quiet=False)
+    gdown.download(url2, output2, quiet=False)
 
 
+    user_key = pd.read_csv(output1, sep = '\t')
 
-    orig_url = 'https://drive.google.com/file/d/1N4ZFdyvULQ0gQDxGsvMFURdiaV94y1F_/view?usp=sharing' 
-    file_id = orig_url.split('/')[-2]
-    dwn_url='https://drive.google.com/uc?export=download&id=' + file_id
-    url = requests.get(dwn_url).text
-    csv_raw = StringIO(url)
-    user_artist_pairs = pd.read_csv(csv_raw, sep = '\t')
-
-    
-
-    orig_url = 'https://drive.google.com/file/d/1OXvOiNbe9EzhX5rjzQZxOoYXLxwDycah/view?usp=sharing'
-    file_id = orig_url.split('/')[-2]
-    dwn_url='https://drive.google.com/uc?export=download&id=' + file_id
-    url = requests.get(dwn_url).text
-    csv_raw = StringIO(url)
-    user_key = pd.read_csv(csv_raw, sep = '\t')
-   
+    user_artist_pairs = pd.read_csv(output2, sep = '\t')
     
 
     page_html = """
