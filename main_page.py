@@ -1,5 +1,11 @@
 import spotipy
 import os
+from flask import Flask, request
+
+import pandas as pd
+import requests
+from io import StringIO
+
 
 def load_html():
     client_id = 'e6be6a0e60124f36ad99038de2f36e91'
@@ -17,6 +23,26 @@ def load_html():
 
     # Force auth every time
     auth_url = sp_oauth.get_authorize_url()
+
+
+
+
+    orig_url = 'https://drive.google.com/file/d/1N4ZFdyvULQ0gQDxGsvMFURdiaV94y1F_/view?usp=sharing' 
+    file_id = orig_url.split('/')[-2]
+    dwn_url='https://drive.google.com/uc?export=download&id=' + file_id
+    url = requests.get(dwn_url).text
+    csv_raw = StringIO(url)
+    user_artist_pairs = pd.read_csv(csv_raw, sep = '\t')
+
+    
+
+    orig_url = 'https://drive.google.com/file/d/1OXvOiNbe9EzhX5rjzQZxOoYXLxwDycah/view?usp=sharing'
+    file_id = orig_url.split('/')[-2]
+    dwn_url='https://drive.google.com/uc?export=download&id=' + file_id
+    url = requests.get(dwn_url).text
+    csv_raw = StringIO(url)
+    user_key = pd.read_csv(csv_raw, sep = '\t')
+   
     
 
     page_html = """
@@ -51,10 +77,14 @@ def load_html():
             <p>
                 <a href="{}" class="pure-button pure-button-primary">Get Started</a>
             </p>
+
+            <p> Shape of df 1: {} </p>
+            
+            <p> Shape of df 2: {} </p>
         </div>
     </div>
     </body>
 </html>
-     """.format(auth_url)
+     """.format(auth_url, user_artist_pairs.head(), user_key.head())
 
     return page_html
