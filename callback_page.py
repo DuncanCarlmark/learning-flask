@@ -1,4 +1,8 @@
 def load_html():
+
+    home_url = "https://initialflaskapp.herokuapp.com/"
+    
+
     page_html = """
     <!doctype html>
     <html lang="en">
@@ -9,7 +13,8 @@ def load_html():
         <title>Landing Page &ndash; Layout Examples &ndash; Pure</title>
     </head>
     <body>
-        <p> God PLease work <\p>
+        <p> Hehe YAY we can make you a playlist now <\p>
+        <a href=""
     </body>
     </html>
     """

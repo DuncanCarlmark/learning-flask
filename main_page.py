@@ -6,6 +6,9 @@ import pandas as pd
 import requests
 from io import StringIO
 
+import gdown
+
+
 
 def load_html():
     client_id = 'e6be6a0e60124f36ad99038de2f36e91'
@@ -41,9 +44,9 @@ def load_html():
 
 
 
-    user_key = pd.read_csv(output1, sep = '\t', cols1)
+    user_key = pd.read_csv(output1, sep = '\t', names = cols1)
 
-    user_artist_pairs = pd.read_csv(output2, sep = '\t', cols2)
+    user_artist_pairs = pd.read_csv(output2, sep = '\t', names = cols2, nrows = 100000)
     
 
 
