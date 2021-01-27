@@ -1,6 +1,11 @@
 def load_html():
 
     home_url = "https://initialflaskapp.herokuapp.com/"
+
+    # user_profile = pd.read_csv('user_profile.csv')
+
+    # user_artist = pd.read_csv('user_artist.csv')
+
     
 
     page_html = """
