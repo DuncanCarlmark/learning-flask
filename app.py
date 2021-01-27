@@ -40,10 +40,12 @@ if __name__ == '__main__':
     cols_user_profile = ['user_id', 'gender', 'age', 'country', 'date']
     cols_user_artist = ['user_id', 'artist_id', 'artist_name', 'plays']
 
+    print('Downloading user_profile')
     user_profile = pd.read_csv(path_user_profile,
                           sep = '\t',
                           names = cols_user_profile)
 
+    print('Downloading user_artist')
     user_artist = pd.read_csv(path_user_artists,
                          sep = '\t',
                          names = cols_user_artist)
