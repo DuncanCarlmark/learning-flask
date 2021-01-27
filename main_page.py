@@ -59,9 +59,7 @@ def load_html():
                 <a href="{}" class="pure-button pure-button-primary">Get Started</a>
             </p>
 
-            <p> Shape of df 1: {} </p>
-            
-            <p> Shape of df 2: {} </p>
+           
         </div>
     </div>
     </body>
