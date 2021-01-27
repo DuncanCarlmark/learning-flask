@@ -23,14 +23,10 @@ def load_html():
     # Force auth every time
     auth_url = sp_oauth.get_authorize_url()
 
-    # P
-    user_profile = pd.read_csv('user_profile.tsv',
-                          sep = '\t',
-                          names = cols_user_profile)
+    # Ph
+    user_profile = pd.read_csv('user_profile.csv')
 
-    user_artist = pd.read_csv('user_artist.tsv',
-                         sep = '\t',
-                         names = cols_user_artist)
+    user_artist = pd.read_csv('user_artist.csv')
 
    
 
