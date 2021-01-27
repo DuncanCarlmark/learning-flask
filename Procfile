@@ -1,2 +1,2 @@
 web: gunicorn app:app
-release: python download_training.py
+worker: python download_training.py
