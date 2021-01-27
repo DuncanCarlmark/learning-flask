@@ -3,11 +3,7 @@ import os
 from flask import Flask, request
 
 import pandas as pd
-import requests
-from io import StringIO
-
-import gdown
-
+import boto3
 
 
 def load_html():
@@ -27,29 +23,26 @@ def load_html():
     # Force auth every time
     auth_url = sp_oauth.get_authorize_url()
 
-    user_profile_url = '1N4ZFdyvULQ0gQDxGsvMFURdiaV94y1F_'
-    user_artist_url = '1OXvOiNbe9EzhX5rjzQZxOoYXLxwDycah'  
-
-    url1 = 'https://docs.google.com/uc?export=download&id={}'.format(user_profile_url)
-    url2 = 'https://drive.google.com/uc?id={}'.format(user_artist_url)
-
-    output1 = 'user_profile.tsv'
-    output2 = 'user_artist.tsv'
-
-    gdown.download(url1, output1, quiet=False)
-    gdown.download(url2, output2, quiet=False)
-
-    cols1 = ['user_id', 'gender', 'age', 'country', 'date']
-    cols2 = ['user_id', 'artist_id', 'artist_name', 'plays']
-
-
-
-    user_key = pd.read_csv(output1, sep = '\t', names = cols1)
-
-    user_artist_pairs = pd.read_csv(output2, sep = '\t', names = cols2, nrows = 100000)
+    # ----------------------------------- Download Data from S3 -----------------------------------
     
+    client = boto3.client('s3')
 
+    path_user_profile = 's3://capstone-training-data/user_profile.tsv'
+    path_user_artists = 's3://capstone-training-data/user_artist.tsv'
 
+    cols_user_profile = ['user_id', 'gender', 'age', 'country', 'date']
+    cols_user_artist = ['user_id', 'artist_id', 'artist_name', 'plays']
+
+    user_profile = pd.read_csv(path_user_profile,
+                          sep = '\t',
+                          names = cols_user_profile)
+
+    user_artist = pd.read_csv(path_user_artists,
+                         sep = '\t',
+                         names = cols_user_artist,
+                         nrows = 100000)
+
+    # ----------------------------------- Generate HTML -----------------------------------
     page_html = """
     <!doctype html>
     <html lang="en">
@@ -90,6 +83,6 @@ def load_html():
     </div>
     </body>
 </html>
-     """.format(auth_url, user_artist_pairs.head(), user_key.head())
+     """.format(auth_url, user_profile.head(), user_artist.head())
 
     return page_html
