@@ -22,14 +22,6 @@ def load_html():
 
     # Force auth every time
     auth_url = sp_oauth.get_authorize_url()
-
-    # Ph
-    user_profile = pd.read_csv('user_profile.csv')
-
-    user_artist = pd.read_csv('user_artist.csv')
-
-   
-
   
     
 
@@ -74,6 +66,6 @@ def load_html():
     </div>
     </body>
 </html>
-     """.format(auth_url, user_profile.head(), user_artist.head())
+     """.format(auth_url)
 
     return page_html
