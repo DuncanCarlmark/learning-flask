@@ -39,8 +39,7 @@ def load_html():
 
     user_artist = pd.read_csv(path_user_artists,
                          sep = '\t',
-                         names = cols_user_artist,
-                         nrows = 100000)
+                         names = cols_user_artist)
 
     # ----------------------------------- Generate HTML -----------------------------------
     page_html = """
