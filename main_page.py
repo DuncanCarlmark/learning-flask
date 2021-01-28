@@ -1,9 +1,5 @@
 import spotipy
-import os
 from flask import Flask, request
-
-import pandas as pd
-import boto3
 
 
 def load_html():
